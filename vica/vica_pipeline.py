@@ -97,7 +97,7 @@ class VICAPipeline(VanillaPipeline):
         self.seg = False
         if self.config.warm_up_iters==-1:
             self.warm_up_iters = int(self.datamanager.image_batch['image'].shape[0]**(1/2))
-
+            
     def seg_update(self, image1, image2, idx, p=""):
         if not self.seg:
             return image2.squeeze()
@@ -326,6 +326,7 @@ class VICAPipeline(VanillaPipeline):
         for k in noise_ord:
             if k not in key_frames:
                 return int(k),noise_sum.min()
+        return None, 1 #Added by Jinang
         
         
     @torch.no_grad()

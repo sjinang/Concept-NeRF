@@ -292,6 +292,7 @@ class InstructPix2Pix(nn.Module):
         
 
         return final_image
+    
     @torch.no_grad()
     def average_edit(
         self,

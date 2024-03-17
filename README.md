@@ -1,5 +1,29 @@
+# Concept-NeRF: Image-enabled 3D editing based on ViCA-NeRF
 
-# ViCA-NeRF: View-Consistency-Aware 3D Editing of Neural Radiance Fields
+Authors: Jinang Shah
+Email: jinang@stanford.edu
+
+Project: Concept-NeRF
+
+Here we present only our modification to the existing codebase of ViCA-NeRF at https://github.com/Dongjiahua/VICA-NeRF.
+
+After setting up the repository and installation, please follow following steps. It is highly recommended to use conda environment to setup the repository and code.
+
+1. One is the textual_inversion_colab, file we provide woth this folder. With set path to reference images, and output directory, you can generate our textual embeddings and updated text encoder and tokenizers.
+
+2. Train your NeRF model with ns-train nerfacto --load-data /path/to/processed/data
+
+3. Once we have the trained NeRF on our data, replace or copy the contents of file "pipeline_stable_diffusion_instruct_pix2pix.py" provided in this folder into the file at: /opt/conda/envs/(your environment name)/lib/python3.8/site-packages/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion_instruct_pix2pix.py
+
+4. Now you can train your Concept-NeRF with following command: ns-train vica --data {PROCESSED_DATA_DIR}  --load-dir {outputs/.../nerfstudio_models}  --pipeline.prompt {"Instruction"}
+
+If your training fails due to lack of CUDA memory, you can try vica-small or vica-tiny in place of "vica" in the above command.
+
+
+## Here is the setup from ViCA-NeRF repository:
+
+
+### ViCA-NeRF: View-Consistency-Aware 3D Editing of Neural Radiance Fields
 <img src="./assets/teaser.png">
 
 This is the official implementation of [VICA-NeRF](https://openreview.net/pdf?id=Pk49a9snPe).

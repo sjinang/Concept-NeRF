@@ -1,0 +1,4 @@
+[nerfstudio.method_configs]
+vica = vica.vica_config:vica_method
+vica_small = vica.vica_config:vica_method_small
+vica_tiny = vica.vica_config:vica_method_tiny

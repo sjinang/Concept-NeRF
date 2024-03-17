@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+vica/__init__.py
+vica/ip2p.py
+vica/vica.py
+vica/vica_config.py
+vica/vica_pipeline.py
+vica/vica_trainer.py
+vica/vica_utils.py
+vica.egg-info/PKG-INFO
+vica.egg-info/SOURCES.txt
+vica.egg-info/dependency_links.txt
+vica.egg-info/entry_points.txt
+vica.egg-info/requires.txt
+vica.egg-info/top_level.txt
