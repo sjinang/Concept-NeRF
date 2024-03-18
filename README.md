@@ -4,6 +4,7 @@ Authors: Jinang Shah
 Email: jinang@stanford.edu
 
 Project: Concept-NeRF
+Project Website: [Concept-NeRF](https://sites.google.com/view/3d-editing/)
 
 Here we present only our modification to the existing codebase of ViCA-NeRF at https://github.com/Dongjiahua/VICA-NeRF.
 
