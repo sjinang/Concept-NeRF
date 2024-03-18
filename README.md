@@ -15,6 +15,25 @@ After setting up the repository and installation, please follow following steps.
 
 3. Once we have the trained NeRF on our data, replace or copy the contents of file "pipeline_stable_diffusion_instruct_pix2pix.py" provided in this folder into the file at: /opt/conda/envs/(your environment name)/lib/python3.8/site-packages/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion_instruct_pix2pix.py (for LINUX)
 
+We do above in order to import tokenizer and text_encoder learned through textual inverison process in the first step.
+
+Changes we make are in the function **_encode_prompt** of **class StableDiffusionInstructPix2PixPipeline**, and at the start of the function _encode_prompt(), it adds following:
+```
+# deleting existing tokenizer and text_encoder to free up space
+del self.tokenizer
+del self.text_encoder
+
+from transformers import CLIPTokenizer, CLIPTextModel
+
+# Path to directory that has learned/trained text_encoder and tokenizer from 1st step
+# CHANGE PATH per your configuration
+load_dir = "/home/rworxn/vica-nerf/textual_inversion/data/hulk_outputs"
+
+# Load the trained models
+self.tokenizer = CLIPTokenizer.from_pretrained(load_dir, subfolder="tokenizer",)
+self.text_encoder = CLIPTextModel.from_pretrained(load_dir, subfolder="text_encoder").to(device)
+```
+
 4. Now you can train your Concept-NeRF with following command: ns-train vica --data {PROCESSED_DATA_DIR}  --load-dir {outputs/.../nerfstudio_models}  --pipeline.prompt {"Instruction"}
 
 If your training fails due to lack of CUDA memory, you can try vica-small or vica-tiny in place of "vica" in the above command.
